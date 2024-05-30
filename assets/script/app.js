@@ -53,17 +53,20 @@ renewIndex()
 
 
 const playVideo = () => {
-    $addBgAnimation.classList.add("background")
     videoPlaying = !videoPlaying;
     if(videoPlaying){
         $currentVideoElement.play();
         $playBtn.firstElementChild.classList.add("hidden")
         $playBtn.lastElementChild.classList.remove("hidden")
+        $addBgAnimation.classList.add("background")
+
     }
     else{
         $currentVideoElement.pause()
         $playBtn.firstElementChild.classList.remove("hidden")
         $playBtn.lastElementChild.classList.add("hidden")
+        $addBgAnimation.classList.remove("background")
+
     }
 }
 
