@@ -5,6 +5,8 @@ const $nextBtn = document.querySelector("#next-btn")
 const $videoTitle = document.querySelector("#video-title")
 const $videoArtist = document.querySelector("#video-artist")
 const $addBgAnimation = document.querySelector(".add-animation")
+const $videoList = document.querySelector("#video-list")
+const $shuffleBtn = document.querySelector("#shuffle-btn")
 
 
 let videoPlaying = false;
@@ -49,8 +51,6 @@ const renewIndex = () => {
 
 renewIndex()
 
- 
-
 
 const playVideo = () => {
     $addBgAnimation.classList.add("background")
@@ -75,6 +75,7 @@ const playNextVideo = () => {
     renewIndex();
     videoPlaying = true; 
     $currentVideoElement.play();
+   
 }
 
 const playPrevVideo = () => {
@@ -85,11 +86,41 @@ const playPrevVideo = () => {
     renewIndex();
     videoPlaying = true;
     $currentVideoElement.play();
+
+}
+
+
+const playSelectedVideo = (event) => {
+    event.preventDefault(); 
+    const videoSrc = event.target.getAttribute("href"); 
+    const videoIndex = videos.findIndex(video => video.src === videoSrc); 
+    if (videoIndex !== -1) { 
+        currentVideoIndex = videoIndex; 
+        renewIndex(); 
+        videoPlaying = true; 
+        $currentVideoElement.play(); 
+        $addBgAnimation.classList.add("background");
+        $playBtn.firstElementChild.classList.add("hidden");
+        $playBtn.lastElementChild.classList.remove("hidden");
+
+    }
+}
+
+$videoList.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", playSelectedVideo);
+});
+
+const randomVideo = () => {
+    let random = Math.floor(Math.random() * videos.length)
+    currentVideoIndex = random
+    renewIndex()
+    videoPlaying = false,
+    playVideo()
 }
 
 
 
-
+$shuffleBtn.addEventListener("click" ,randomVideo)
 $playBtn.addEventListener("click" , playVideo);
 $nextBtn.addEventListener("click" , playNextVideo)
 $prevBtn.addEventListener("click" , playPrevVideo)
