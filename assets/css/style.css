@@ -5,6 +5,48 @@ body{
 	display:flex;
 }
 
+.pin{
+	flex-direction: row;
+	position: sticky;
+	top:20px;
+	left:0;
+	background-color: #0000006b;
+	backdrop-filter: 10px;
+	width: 100%;
+	padding: 30px 50px;
+	transition: 0.5s;
+	border-radius: 20px;
+	align-items: center;
+}
+
+
+
+.pin video {
+	width: 400px;
+	height: 200px; 
+	margin-bottom: 0;
+}
+
+.pin .wrapper {
+	margin-right: 50px;
+}
+
+.pin h2 {
+	font-size: 26px;
+}
+
+.pin p {
+	font-size: 14px;
+}
+
+.pin #play-btn, #next-btn, #prev-btn{
+	font-size: 28px;
+	width: 55px;
+	height: 55px;
+}
+
+
+
 .background{
 	position: absolute;
 	width:100%;
