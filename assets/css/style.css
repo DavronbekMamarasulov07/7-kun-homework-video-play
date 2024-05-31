@@ -47,8 +47,6 @@ body{
 }
 
 
-
-
 #nav video{
 	width: 800px;
 	height: 450px;
@@ -104,11 +102,13 @@ body{
 	background:url(https://lh4.googleusercontent.com/proxy/gdKMsKqzMFQ1xEVJf9lNNfL7pw_HG3DaHZij1yJPHGPLQYzY_FXqVrSsC0Q2VK49HPML25NGCls545UIGYmTs6y11TAXtLcKAv_HmKA=w3840-h2160-p-k-no-nd-mv);
 	background-position:center center;
 	background-size:cover;
-	animation: zoom 30s infinite alternate;
-	animation-timing-function: linear;
 	filter: blur(2px);
 }
 
+.add-animation{
+	animation: zoom 30s infinite alternate;
+	animation-timing-function: linear;
+}
 
 
 @keyframes zoom {

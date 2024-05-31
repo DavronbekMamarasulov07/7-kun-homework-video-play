@@ -4,7 +4,6 @@ const $playBtn = document.querySelector("#play-btn")
 const $nextBtn = document.querySelector("#next-btn")
 const $videoTitle = document.querySelector("#video-title")
 const $videoArtist = document.querySelector("#video-artist")
-const $addBgAnimation = document.querySelector(".add-animation")
 const $videoList = document.querySelector("#video-list")
 const $shuffleBtn = document.querySelector("#shuffle-btn")
 const $videoPlayline = document.querySelector("#video-playline")
@@ -14,6 +13,7 @@ const $container = document.querySelector(".container")
 const $nav = document.querySelector("#nav")
 const $listMenuBtn = document.querySelector(".bi-list")
 const $listMenu = document.querySelector("#list")
+const $background = document.querySelector(".background")
 
 
 let videoPlaying = false;
@@ -82,8 +82,8 @@ const playVideo = () => {
         $currentVideoElement.play();
         $playBtn.firstElementChild.classList.add("hidden")
         $playBtn.lastElementChild.classList.remove("hidden")
-        $addBgAnimation.classList.add("background")
         movieVideoLine();
+        $background.classList.add("add-animation")
 
         
     }
@@ -91,7 +91,8 @@ const playVideo = () => {
         $currentVideoElement.pause()
         $playBtn.firstElementChild.classList.remove("hidden")
         $playBtn.lastElementChild.classList.add("hidden")
-        $addBgAnimation.classList.remove("background")
+        $background.classList.remove("add-animation")
+
     }
 
      checkVideoEnd();
