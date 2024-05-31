@@ -159,7 +159,7 @@ $playBtn.addEventListener("click" , playVideo);
 $nextBtn.addEventListener("click" , playNextVideo)
 $prevBtn.addEventListener("click" , playPrevVideo)
 $container.addEventListener("scroll" , () => {
-    if($container.scrollTop > 60 ){
+    if($container.scrollTop > 70 ){
         $nav.classList.add("pin")
     }
     else{
