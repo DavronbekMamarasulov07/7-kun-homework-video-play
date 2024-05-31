@@ -63,8 +63,9 @@ const checkVideoEnd = () => {
              playNextVideo(); 
              clearInterval(intervalCheckVideo)
          }
-     },1000)
+     },100)
  }
+
  
 
 
@@ -76,7 +77,7 @@ const playVideo = () => {
         $playBtn.lastElementChild.classList.remove("hidden")
         $addBgAnimation.classList.add("background")
         movieVideoLine();
-        
+
         
     }
     else{
@@ -85,19 +86,22 @@ const playVideo = () => {
         $playBtn.lastElementChild.classList.add("hidden")
         $addBgAnimation.classList.remove("background")
     }
-    checkVideoEnd();
+
+     checkVideoEnd();
+
 }
 
 const playNextVideo = () => {
-    currentVideoIndex++;
-    if (currentVideoIndex >= videos.length) {
-        currentVideoIndex = 0; 
+    if (currentVideoIndex + 1 < videos.length) {
+        currentVideoIndex++; 
+    }
+    else{
+        currentVideoIndex = 0;
     }
     renewIndex();
-    videoPlaying = true; 
-    $currentVideoElement.play();
-    $playBtn.firstElementChild.classList.add("hidden")
-    $playBtn.lastElementChild.classList.remove("hidden")
+    videoPlaying = false; 
+    playVideo()
+  
    
 }
 
@@ -107,10 +111,8 @@ const playPrevVideo = () => {
         currentVideoIndex = videos.length - 1; 
     }
     renewIndex();
-    videoPlaying = true;
-    $currentVideoElement.play();
-    $playBtn.firstElementChild.classList.add("hidden")
-    $playBtn.lastElementChild.classList.remove("hidden")
+    videoPlaying = false;
+    playVideo()
 }
 
 
@@ -131,7 +133,7 @@ const movieVideoLine = () => {
         if($currentVideoElement.currentTime === $currentVideoElement.duration){
             clearInterval(videoInterval)
         }
-    }, 1000)
+    }, 100)
 }
 
 const randomVideo = () => {
@@ -157,10 +159,11 @@ $playBtn.addEventListener("click" , playVideo);
 $nextBtn.addEventListener("click" , playNextVideo)
 $prevBtn.addEventListener("click" , playPrevVideo)
 $container.addEventListener("scroll" , () => {
-    if($container.scrollTop > 85){
+    if($container.scrollTop > 60 ){
         $nav.classList.add("pin")
     }
     else{
         $nav.classList.remove("pin")
+    
     }
 })
