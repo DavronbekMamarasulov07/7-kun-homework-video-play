@@ -11,7 +11,9 @@ const $videoPlayline = document.querySelector("#video-playline")
 const $playedTime = document.querySelector("#played-time")
 const $playedDuration = document.querySelector("#played-duration")
 const $container = document.querySelector(".container")
-const $nav = document.querySelector(".nav")
+const $nav = document.querySelector("#nav")
+const $listMenuBtn = document.querySelector(".bi-list")
+const $listMenu = document.querySelector("#list")
 
 
 let videoPlaying = false;
@@ -21,30 +23,35 @@ let videos = [
     {
         src : "./assets/videos/BellaCiao.mp4",
         title : "Bella Ciao",
-        artist: "La Casa De Papel"
+        artist: "La Casa De Papel",
+        pictures: "https://avatars.mds.yandex.net/i?id=410c95fc8e5c8b9a260ddfc3944b20041c6cf32f-7674757-images-thumbs&n=13"
        
     },
     {
         src : "./assets/videos/Blinding-Lights.mp4",
         title: "Blinding Lights",
-        artist: "The Weeknd"
+        artist: "The Weeknd",
+        pictures:"https://i.ytimg.com/vi/EXbpxn_ExC8/maxresdefault.jpg"
         
     },
     {
         src : "./assets/videos/MOONLIGHT.mp4",
         title: "Moonlight",
-        artist: "XXXTENTATIONS"
+        artist: "XXXTENTATIONS",
+        pictures:"https://medias.spotern.com/spots/w1280/164/164349-1538493175.jpg"
        
     },
     {
         src: "./assets/videos/Samurai.mp4",
         title: "Samurai",
-        artist: "Miyagi"
+        artist: "Miyagi",
+        pictures:"https://i.ytimg.com/vi/KENLVZ1_4Ow/maxresdefault.jpg"
     },
     {
         src: "./assets/videos/Havo.mp4",
         title: "Havo",
-        artist: "Konsta"
+        artist: "Konsta",
+        pictures:"https://pic.rutubelist.ru/video/6c/d7/6cd7650be56e2a980360303500d03c11.jpg"
     }
 ]
 
@@ -152,14 +159,52 @@ const chnageVideoCurrentStep = (e) => {
     $currentVideoElement.currentTime = seconds;
 }
 
+const renderList = () =>{
+    videos.forEach((video,index) => {
+        const videoEl = document.createElement("video");
+        
+        videoEl.src = video.src;
+        videoEl.addEventListener("loadedmetadata" , (e) => {
+            const $div = document.createElement("div");
+            $div.dataset.videoId = index
+            $div.className = "list-item text-white"
+            $div.innerHTML = `
+                <img class="w-[300px] h-[150px] rounded-xl " src="${video.pictures}" alt="${video.title}">
+            <div class="flex justify-between w-full items-center"> 
+                    <div>
+                        <p class="text-[24px]">${video.title}</p>
+                        <p class="text-gray-400">${video.artist}</p>
+                    </div>
+                    <div>
+                        <p class="text-[16px] text-gray-300">${formatTime(e.target.duration)}
+                    </div>
+            </div>
+            `
+            $listMenu.append($div)
+        })
+        
+    })
+}
+renderList()
+
+const playSelectedVideo = (e) => {
+    if(e.target.classList.contains("list-item")){
+        currentVideoIndex = e.target.dataset.videoId;
+        renewIndex()
+        videoPlaying = false
+        playVideo()
+    }
+}
 
 $videoPlayline.addEventListener("input" , chnageVideoCurrentStep)
 $shuffleBtn.addEventListener("click" ,randomVideo)
 $playBtn.addEventListener("click" , playVideo);
 $nextBtn.addEventListener("click" , playNextVideo)
 $prevBtn.addEventListener("click" , playPrevVideo)
+$listMenu.addEventListener("click", playSelectedVideo)
+
 $container.addEventListener("scroll" , () => {
-    if($container.scrollTop > 70 ){
+    if($container.scrollTop > 80 ){
         $nav.classList.add("pin")
     }
     else{
@@ -167,3 +212,4 @@ $container.addEventListener("scroll" , () => {
     
     }
 })
+

@@ -10,11 +10,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-600 flex items-center justify-center">
+<body class="bg-gray-600 flex items-center justify-center backdrop-blur-[10px]">
     <div class="add-animation"></div>
-    <div class="container overflow-auto  w-full h-screen px-10 backdrop-blur-0 flex items-start  ">
-        <div id="video-wrapper" class="py-16 wrapper max-w-[1000px]  flex flex-col mx-auto items-center pb-[100px]\ ">
-            <div id="nav" class="nav  flex flex-col mx-auto ">
+    <div class="container  overflow-auto  w-full h-screen px-10 backdrop-blur-0 flex items-start  ">
+        <div id="video-wrapper" class=" py-16 wrapper max-w-[1000px]  flex flex-col mx-auto items-center gap-10  ">
+            <div id="nav" class="nav  flex flex-col mx-auto  ">
                 <video class="rounded-3xl overflow-hidden mb-4" src="./assets/videos/BellaCiao.mp4"
                     id="current-video"></video>
 
@@ -29,10 +29,11 @@
                             <input type="range" step="0.01" id="video-playline"
                                 class="w-full accent-white cursor-pointer " value="0">
                             <div class="flex w-full justify-between text-white">
-                                <p id="played-time">--:--</p>
-                                <p id="played-duration">--:--</p>
+                                <p id="played-time">00:00</p>
+                                <p id="played-duration">00:00</p>
                             </div>
                         </div>
+                        <img src="" alt="">
                     </div>
                     <div class="btn-items-wrapper flex items-center justify-between max-w-[500px] mx-auto gap-[30px]">
                         <button id="menu-btn" class="text-white text-2xl hover:text-gray-300 ">
@@ -56,13 +57,9 @@
                     </div>
                 </div>
             </div>
-            <div class="">
-                <div class="">
-                    <img class="w-[800px]"
-                        src="https://avatars.mds.yandex.net/i?id=0c01c82b45b439ed37419f782995b7928680cf2f-12714503-images-thumbs&n=13"
-                        alt="">
-                </div>
-            </div>
+
+            <div id="list" class=" list-none"></div>
+
         </div>
     </div>
     <script src="./assets/script/app.js"></script>
